@@ -92,3 +92,13 @@ http://nuuneoi.com/blog/blog.php?read_id=808
 -	Adapter : คลาสสำหรับควบคุมการแสดงผลของ ListView, RecyclerView และอ่านข้อมูลจาก Model
 -	Service : คลาสสำหรับการเชื่อมต่อ Wordpress REST API และนำข้อมูลที่ได้ไปอัพเดทที่ Model
 -	Model : คลาสสำหรับเก็บข้อมูล เมื่อได้รับข้อมูลใหม่จาก Service จะ Notify ไปยัง Subscriber (ในที่นี้จะประกาศ Subscriber ไว้ที่ Activity) โดย Model จะสืบทอดจาก Observable อีกที
+
+--
+## Roadmap
+
+- รองรับ tag : ol, ul, li
+- รองรับ Syntax Hilighter (พวก tag pre, code)
+- แสดง Comment และตอบ Comment
+- Bookmark โพสที่ชอบ
+- Share โพส
+- Login
