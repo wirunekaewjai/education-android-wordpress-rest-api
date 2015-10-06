@@ -1,7 +1,10 @@
 package com.devdayo.wp.page.post;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.devdayo.wp.page.post.view.IFrameContentView;
@@ -57,7 +60,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             TextContentView v = new TextContentView(context);
             return new TextContentViewHolder(v);
         }
-        else if(viewType == VIEW_TYPE_CONTENT_IMAGE)
+        else if(viewType == VIEW_TYPE_CONTENT_IMAGE || viewType == VIEW_TYPE_CONTENT_LINK_IMAGE)
         {
             ImageContentView v = new ImageContentView(context);
             return new ImageContentViewHolder(v);
@@ -144,6 +147,29 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             v.setImageURL(value);
         }
+        else if(viewType == VIEW_TYPE_CONTENT_LINK_IMAGE)
+        {
+            ImageContentViewHolder vh = (ImageContentViewHolder) holder;
+            ImageContentView v = vh.contentView;
+
+            Content content = model.getPost().getContents().get(actualPosition);
+            String value = content.getValue();
+            final String href = content.getHref();
+
+            v.setImageURL(value);
+
+            v.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(href));
+
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }
         else if(viewType == VIEW_TYPE_CONTENT_IFRAME)
         {
             IFrameContentViewHolder vh = (IFrameContentViewHolder) holder;
@@ -205,6 +231,10 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 else if(type == Content.Type.IFRAME)
                 {
                     return VIEW_TYPE_CONTENT_IFRAME;
+                }
+                else if(type == Content.Type.LINK_IMAGE)
+                {
+                    return VIEW_TYPE_CONTENT_LINK_IMAGE;
                 }
             }
 

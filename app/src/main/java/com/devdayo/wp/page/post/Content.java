@@ -1,5 +1,7 @@
 package com.devdayo.wp.page.post;
 
+import android.text.Html;
+
 import java.util.ArrayList;
 
 /**
@@ -9,6 +11,7 @@ public class Content
 {
     private Type type;
     private String value;
+    private String href;
 
     public Type getType()
     {
@@ -18,6 +21,11 @@ public class Content
     public String getValue()
     {
         return value;
+    }
+
+    public String getHref()
+    {
+        return href;
     }
 
     public static ArrayList<Content> parse(String contentString)
@@ -37,18 +45,18 @@ public class Content
 
                 System.out.println("iframe: " + line);
             }
-//            else if(line.contains("<a"))
-//            {
-//                Content content = new Content();
-//                content.type = Type.LINK_TEXT;
-//                content.value = line;
-//
-//                contents.add(content);
-//            }
+            else if(line.contains("<a") && line.contains("<img"))
+            {
+                Content content = new Content();
+                content.type = Type.LINK_IMAGE;
+                content.value = getElementAttribute(line, "src");
+                content.href = getElementAttribute(line, "href");
+
+                contents.add(content);
+            }
             else if(line.contains("<img"))
             {
-                String temp = line.split("src=\"")[1];
-                String src = temp.split("\"")[0];
+                String src = getElementAttribute(line, "src");
 
                 Content content = new Content();
                 content.type = Type.IMAGE;
@@ -71,6 +79,18 @@ public class Content
         }
 
         return contents;
+    }
+
+    private static String getElementValue(String text)
+    {
+        String temp = text.split(">")[1];
+        return temp.split("<")[0];
+    }
+
+    private static String getElementAttribute(String text, String attributeName)
+    {
+        String temp = text.split(attributeName+"=\"")[1];
+        return temp.split("\"")[0];
     }
 
     public enum Type

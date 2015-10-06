@@ -2,6 +2,7 @@ package com.devdayo.wp.page.post.view;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -20,11 +21,35 @@ public class TextContentView extends TextView
 
         int dp = (int) getResources().getDimension(R.dimen.activity_horizontal_margin);
         setPadding(dp, dp, dp, dp);
+
+        // Enable <a href=""/>
+        setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private static CharSequence trim(CharSequence sequence)
+    {
+        int start = 0;
+        int end = sequence.length();
+
+        while(start < end && Character.isWhitespace(sequence.charAt(start)))
+        {
+            start++;
+        }
+
+        while (end > start && Character.isWhitespace(sequence.charAt(end - 1)))
+        {
+            end--;
+        }
+
+        return sequence.subSequence(start, end);
     }
 
     public void setContent(String content, Style style)
     {
-        setText(Html.fromHtml(content).toString().trim());
+        CharSequence seq = Html.fromHtml(content);
+        seq = trim(seq);
+
+        setText(seq);
 
         float size = BASE_TEXT_SIZE;
 

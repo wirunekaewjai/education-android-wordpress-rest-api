@@ -14,7 +14,7 @@ import java.util.Locale;
  */
 public class App extends Application
 {
-    public static final String API_URL = "https://public-api.wordpress.com/rest/v1.1/sites/100381386";
+    public static final String API_URL = "https://public-api.wordpress.com/rest/v1.1/sites/wirunedayoblog.wordpress.com";
     public static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ", Locale.getDefault());
 
     private static App instance;
