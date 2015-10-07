@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.devdayo.wp.page.post.view.IFrameContentView;
 import com.devdayo.wp.page.post.view.ImageContentView;
 import com.devdayo.wp.page.post.view.ImageHeaderView;
+import com.devdayo.wp.page.post.view.ListItemContentView;
 import com.devdayo.wp.page.post.view.TextContentView;
 
 import java.util.ArrayList;
@@ -24,6 +25,12 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     // Content : Text
     private final int VIEW_TYPE_CONTENT_TEXT = 20001;
+
+    // Content : Ordered List Item - Text
+    private final int VIEW_TYPE_CONTENT_ORDERED_LIST_ITEM = 20002;
+
+    // Content : Unordered List Item - Text
+    private final int VIEW_TYPE_CONTENT_UNORDERED_LIST_ITEM = 20003;
 
     // Content : Image
     private final int VIEW_TYPE_CONTENT_IMAGE = 30001;
@@ -70,6 +77,11 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             IFrameContentView v = new IFrameContentView(context);
             return new IFrameContentViewHolder(v);
         }
+        else if(viewType == VIEW_TYPE_CONTENT_ORDERED_LIST_ITEM || viewType == VIEW_TYPE_CONTENT_UNORDERED_LIST_ITEM)
+        {
+            ListItemContentView v = new ListItemContentView(context);
+            return new ListItemContentViewHolder(v);
+        }
 
         ImageHeaderView v = new ImageHeaderView(context);
         return new ImageHeaderViewHolder(v);
@@ -104,35 +116,35 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             v.setOnClickListener(null);
 
             Content content = model.getPost().getContents().get(actualPosition);
-            String value = content.getValue();
+            String value = content.get("value");
 
             if(value.contains("h1"))
             {
-                v.setContent(content.getValue(), TextContentView.Style.H1);
+                v.setContent(value, TextContentView.Style.H1);
             }
             else if(value.contains("h2"))
             {
-                v.setContent(content.getValue(), TextContentView.Style.H2);
+                v.setContent(value, TextContentView.Style.H2);
             }
             else if(value.contains("h3"))
             {
-                v.setContent(content.getValue(), TextContentView.Style.H3);
+                v.setContent(value, TextContentView.Style.H3);
             }
             else if(value.contains("h4"))
             {
-                v.setContent(content.getValue(), TextContentView.Style.H4);
+                v.setContent(value, TextContentView.Style.H4);
             }
             else if(value.contains("h5"))
             {
-                v.setContent(content.getValue(), TextContentView.Style.H5);
+                v.setContent(value, TextContentView.Style.H5);
             }
             else if(value.contains("h6"))
             {
-                v.setContent(content.getValue(), TextContentView.Style.H6);
+                v.setContent(value, TextContentView.Style.H6);
             }
             else
             {
-                v.setContent(content.getValue(), TextContentView.Style.P);
+                v.setContent(value, TextContentView.Style.P);
             }
         }
         else if(viewType == VIEW_TYPE_CONTENT_IMAGE)
@@ -143,7 +155,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             v.setOnClickListener(null);
 
             Content content = model.getPost().getContents().get(actualPosition);
-            String value = content.getValue();
+            String value = content.get("src");
 
             v.setImageURL(value);
         }
@@ -153,8 +165,8 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ImageContentView v = vh.contentView;
 
             Content content = model.getPost().getContents().get(actualPosition);
-            String value = content.getValue();
-            final String href = content.getHref();
+            String value = content.get("src");
+            final String href = content.get("href");
 
             v.setImageURL(value);
 
@@ -176,9 +188,30 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             IFrameContentView v = vh.contentView;
 
             Content content = model.getPost().getContents().get(actualPosition);
-            String value = content.getValue();
+            String value = content.get("value");
 
             v.setContent(content.hashCode(), value);
+        }
+        else if(viewType == VIEW_TYPE_CONTENT_ORDERED_LIST_ITEM)
+        {
+            ListItemContentViewHolder vh = (ListItemContentViewHolder) holder;
+            ListItemContentView v = vh.contentView;
+
+            Content content = model.getPost().getContents().get(actualPosition);
+            String value = content.get("value");
+            String order = content.get("order");
+
+            v.setContent(order+". ", value);
+        }
+        else if(viewType == VIEW_TYPE_CONTENT_UNORDERED_LIST_ITEM)
+        {
+            ListItemContentViewHolder vh = (ListItemContentViewHolder) holder;
+            ListItemContentView v = vh.contentView;
+
+            Content content = model.getPost().getContents().get(actualPosition);
+            String value = content.get("value");
+
+            v.setContent(" - ", value);
         }
     }
 
@@ -236,6 +269,14 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 {
                     return VIEW_TYPE_CONTENT_LINK_IMAGE;
                 }
+                else if(type == Content.Type.ORDERED_LIST_ITEM)
+                {
+                    return VIEW_TYPE_CONTENT_ORDERED_LIST_ITEM;
+                }
+                else if(type == Content.Type.UNORDERED_LIST_ITEM)
+                {
+                    return VIEW_TYPE_CONTENT_UNORDERED_LIST_ITEM;
+                }
             }
 
 //            count += contents.size();
@@ -262,6 +303,17 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         public TextContentView contentView;
 
         public TextContentViewHolder(TextContentView itemView)
+        {
+            super(itemView);
+            contentView = itemView;
+        }
+    }
+
+    private class ListItemContentViewHolder extends RecyclerView.ViewHolder
+    {
+        public ListItemContentView contentView;
+
+        public ListItemContentViewHolder(ListItemContentView itemView)
         {
             super(itemView);
             contentView = itemView;

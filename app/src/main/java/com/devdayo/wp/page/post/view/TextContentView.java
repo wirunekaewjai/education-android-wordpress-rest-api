@@ -13,7 +13,7 @@ import com.devdayo.wp.R;
  */
 public class TextContentView extends TextView
 {
-    private static final int BASE_TEXT_SIZE = 14; // sp unit
+    protected static final int BASE_TEXT_SIZE = 14; // sp unit
 
     public TextContentView(Context context)
     {
@@ -24,24 +24,6 @@ public class TextContentView extends TextView
 
         // Enable <a href=""/>
         setMovementMethod(LinkMovementMethod.getInstance());
-    }
-
-    private static CharSequence trim(CharSequence sequence)
-    {
-        int start = 0;
-        int end = sequence.length();
-
-        while(start < end && Character.isWhitespace(sequence.charAt(start)))
-        {
-            start++;
-        }
-
-        while (end > start && Character.isWhitespace(sequence.charAt(end - 1)))
-        {
-            end--;
-        }
-
-        return sequence.subSequence(start, end);
     }
 
     public void setContent(String content, Style style)
@@ -84,6 +66,26 @@ public class TextContentView extends TextView
 
         setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
     }
+
+
+    private static CharSequence trim(CharSequence sequence)
+    {
+        int start = 0;
+        int end = sequence.length();
+
+        while(start < end && Character.isWhitespace(sequence.charAt(start)))
+        {
+            start++;
+        }
+
+        while (end > start && Character.isWhitespace(sequence.charAt(end - 1)))
+        {
+            end--;
+        }
+
+        return sequence.subSequence(start, end);
+    }
+
 
     public enum Style
     {
