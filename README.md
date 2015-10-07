@@ -1,9 +1,15 @@
 # android-wordpress-rest-api
 Integrate your wordpress.com website into Android app
 
+## Update @ 2015.07.10 - 9.00 AM
+- รองรับ tag : ol, ul, li
+- รองรับ href แบบ Text และ Image
+
+--
+
 ## การใช้งานเบื้้องต้น
 
-โค้ดชุดนี้จะผูกข้อมูลอยู่กับเว็บ eieiblog.wordpress.com ที่เป็นเว็บทดสอบ ถ้าจะนำไปใช้ก็ให้เปลี่ยนเป็นของตัวเอง สามารถไปเปลี่ยนได้ที่คลาส App ตรงสตริง "../100381386 ให้นำชื่อ หรือ id ของเว็บตนเองมาใส่แทนตัวเลข
+โค้ดชุดนี้จะผูกข้อมูลอยู่กับเว็บ wirunedayoblog.wordpress.com ที่เป็นเว็บทดสอบ ถ้าจะนำไปใช้ก็ให้เปลี่ยนเป็นของตัวเอง สามารถไปเปลี่ยนได้ที่คลาส App ตรงสตริง "../wirunedayoblog.wordpress.com ให้นำชื่อ หรือ id ของเว็บตนเองมาใส่แทนตัวเลข
 
 ในกรณีที่ต้องการใช้เว็บไซต์ที่ใช้ wordpress.org ให้ทำการตัดตั้งปลั๊กอิน Jetpack ของ Automattic และลิงก์ Plugin ให้เรียบร้อยหลังจากนั้นเปิดใช้งาน JSON API ใน Jetpack Setting ก็สามารถใช้งานร่วมกับแอปนี้ได้เช่นกัน
 
@@ -96,7 +102,6 @@ http://nuuneoi.com/blog/blog.php?read_id=808
 --
 ## Roadmap
 
-- รองรับ tag : ol, ul, li
 - รองรับ Syntax Hilighter (พวก tag pre, code)
 - แสดง Comment และตอบ Comment
 - Bookmark โพสที่ชอบ
