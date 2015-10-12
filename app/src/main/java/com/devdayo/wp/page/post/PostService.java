@@ -4,8 +4,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.devdayo.wp.app.App;
-import com.devdayo.wp.helper.QueryString;
+import com.devdayo.wp.core.App;
+import com.devdayo.wp.core.helper.QueryString;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -2,7 +2,7 @@ package com.devdayo.wp.page.feed;
 
 import android.text.Html;
 
-import com.devdayo.wp.app.App;
+import com.devdayo.wp.core.App;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -54,7 +54,7 @@ public class FeedItem
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
         try
         {
-            Date dateObject = App.DEFAULT_DATE_FORMAT.parse(date);
+            Date dateObject = App.getDateFormat().parse(date);
             return dateFormat.format(dateObject);
         }
         catch (ParseException e)
@@ -76,8 +76,12 @@ public class FeedItem
 
             FeedItem item = new FeedItem();
 
-            item.id = object.optInt("ID");
-            item.title = object.optString("title");
+            if(object.has("ID"))
+                item.id = object.optInt("ID");
+            else
+                item.id = object.optInt("id");
+
+            item.title = Html.fromHtml(object.optString("title")).toString().trim();
             item.excerpt = Html.fromHtml(object.optString("excerpt")).toString().trim();
             item.thumbnail = object.optString("featured_image");
             item.date = object.optString("date");

@@ -1,5 +1,6 @@
 package com.devdayo.wp.page.feed;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.devdayo.wp.R;
 
 /**
@@ -80,7 +82,21 @@ public class FeedAdapter extends RecyclerView.Adapter<ViewHolder>
             vh.excerpt.setText(item.getExcerpt());
             vh.date.setText(item.getDate("dd MMMM yyyy"));
 
-            Glide.with(vh.thumbnail.getContext()).load(item.getThumbnail()).fitCenter().into(vh.thumbnail);
+            Context context = vh.thumbnail.getContext();
+            String thumbnail = item.getThumbnail();
+
+            if(!thumbnail.equalsIgnoreCase("null"))
+            {
+                vh.thumbnail.setVisibility(View.VISIBLE);
+                vh.thumbnail.setAdjustViewBounds(true);
+                vh.thumbnail.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+                Glide.with(context).load(thumbnail).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.place_holder_image).into(vh.thumbnail);
+            }
+            else
+            {
+                vh.thumbnail.setVisibility(View.GONE);
+            }
         }
         else if(viewType == VIEW_TYPE_FOOTER)
         {

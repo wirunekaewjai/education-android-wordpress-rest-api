@@ -1,6 +1,6 @@
 package com.devdayo.wp.page.post;
 
-import com.devdayo.wp.app.App;
+import com.devdayo.wp.core.App;
 
 import org.json.JSONObject;
 
@@ -47,7 +47,7 @@ public class Post
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
         try
         {
-            Date dateObject = App.DEFAULT_DATE_FORMAT.parse(date);
+            Date dateObject = App.getDateFormat().parse(date);
             return dateFormat.format(dateObject);
         }
         catch (ParseException e)
@@ -72,7 +72,11 @@ public class Post
     {
         Post post = new Post();
 
-        post.id = object.optInt("ID");
+        if(object.has("ID"))
+            post.id = object.optInt("ID");
+        else
+            post.id = object.optInt("id");
+
         post.title = object.optString("title");
         post.contents = Content.parse(object.optString("content").trim());
         post.thumbnail = object.optString("featured_image");

@@ -2,7 +2,7 @@ package com.devdayo.wp.page.feed;
 
 import android.support.annotation.NonNull;
 
-import com.devdayo.wp.base.Observable;
+import com.devdayo.wp.core.base.Observable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,11 +12,6 @@ import java.util.Collection;
  */
 public class FeedModel extends Observable<FeedModel.OnDataChangedListener>
 {
-    public static final String CMD_ADDED_TO_TOP = "ADDED_TO_TOP";
-    public static final String CMD_ADDED_TO_BOTTOM = "ADDED_TO_BOTTOM";
-
-    public static final String VALUE_COUNT = "COUNT";
-
     private final ArrayList<FeedItem> items = new ArrayList<>();
 
     public int count()

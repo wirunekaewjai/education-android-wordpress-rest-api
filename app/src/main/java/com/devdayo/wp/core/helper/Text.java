@@ -1,4 +1,4 @@
-package com.devdayo.wp.helper;
+package com.devdayo.wp.core.helper;
 
 import android.content.res.Resources;
 

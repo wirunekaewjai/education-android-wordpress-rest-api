@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.TypedValue;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -68,7 +69,7 @@ public class PostActivity extends AppCompatActivity
 
         model.subscribe(onDataChangedListener);
         swipeLayout.setOnRefreshListener(onRefreshListener);
-        listView.setScrollViewCallbacks(observableScrollViewCallbacks);
+//        listView.setScrollViewCallbacks(observableScrollViewCallbacks);
 
         service.fetch();
     }
@@ -80,28 +81,28 @@ public class PostActivity extends AppCompatActivity
 
         model.unSubscribe(onDataChangedListener);
         swipeLayout.setOnRefreshListener(null);
-        listView.setScrollViewCallbacks(null);
+//        listView.setScrollViewCallbacks(null);
     }
 
     private void setupActionBar(Post post)
     {
         String title = post.getTitle();
 
-        if(title.length() > 20)
-        {
-            title = title.substring(0, 20) + "...";
-        }
+//        if(title.length() > 20)
+//        {
+//            title = title.substring(0, 20) + "...";
+//        }
 
         ActionBar actionBar = getSupportActionBar();
         if(null != actionBar)
         {
             actionBar.setTitle(title);
 
-            if(post.hasThumbnail())
-            {
-                ColorDrawable colorDrawable = new ColorDrawable(Color.TRANSPARENT);
-                actionBar.setBackgroundDrawable(colorDrawable);
-            }
+//            if(post.hasThumbnail())
+//            {
+//                ColorDrawable colorDrawable = new ColorDrawable(Color.TRANSPARENT);
+//                actionBar.setBackgroundDrawable(colorDrawable);
+//            }
 
             actionBar.show();
         }

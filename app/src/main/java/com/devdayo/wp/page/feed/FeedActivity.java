@@ -33,8 +33,8 @@ public class FeedActivity extends AppCompatActivity
         setContentView(R.layout.activity_feed);
 
         model = new FeedModel();
-        service = new FeedService(model);
         adapter = new FeedAdapter(model);
+        service = FeedService.create(model);
 
         layoutManager = new LinearLayoutManager(this);
 

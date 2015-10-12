@@ -6,8 +6,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.devdayo.wp.R;
-import com.devdayo.wp.helper.Size;
-import com.devdayo.wp.helper.Text;
+import com.devdayo.wp.core.helper.Size;
+import com.devdayo.wp.core.helper.Text;
 
 /**
  * Created by Wirune Kaewjai on 10/4/2015.

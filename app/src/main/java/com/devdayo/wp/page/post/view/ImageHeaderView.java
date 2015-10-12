@@ -19,13 +19,13 @@ public class ImageHeaderView extends ImageView
         setAdjustViewBounds(true);
         setScaleType(ScaleType.FIT_CENTER);
 
-        int[] attrs = { android.R.attr.actionBarSize };
-        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(attrs);
-        int actionBarSize = (int) styledAttributes.getDimension(0, 0);
-
-        setPadding(0, actionBarSize, 0, 0);
-
-        styledAttributes.recycle();
+//        int[] attrs = { android.R.attr.actionBarSize };
+//        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(attrs);
+//        int actionBarSize = (int) styledAttributes.getDimension(0, 0);
+//
+//        setPadding(0, actionBarSize, 0, 0);
+//
+//        styledAttributes.recycle();
     }
 
     public void setImageURL(String url)

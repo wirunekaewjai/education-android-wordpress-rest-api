@@ -1,8 +1,6 @@
 package com.devdayo.wp.page.post;
 
-import com.devdayo.wp.base.Observable;
-
-import java.util.HashMap;
+import com.devdayo.wp.core.base.Observable;
 
 /**
  * Created by Wirune Kaewjai on 10/4/2015.

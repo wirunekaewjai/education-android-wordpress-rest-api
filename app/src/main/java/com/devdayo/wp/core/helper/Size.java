@@ -1,4 +1,4 @@
-package com.devdayo.wp.helper;
+package com.devdayo.wp.core.helper;
 
 import android.util.DisplayMetrics;
 import android.view.View;

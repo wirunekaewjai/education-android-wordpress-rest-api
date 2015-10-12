@@ -1,4 +1,4 @@
-package com.devdayo.wp.base;
+package com.devdayo.wp.core.base;
 
 import java.util.ArrayList;
 import java.util.HashMap;

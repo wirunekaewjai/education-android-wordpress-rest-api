@@ -4,6 +4,6 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" >
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/actionBarBackground</item>
-        <item name="windowActionBarOverlay">true</item>
+        <!--<item name="windowActionBarOverlay">true</item>-->
     </style>
 </resources>
