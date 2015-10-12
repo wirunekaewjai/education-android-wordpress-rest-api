@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +32,12 @@ public class FeedActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(null != actionBar)
+        {
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
 
         model = new FeedModel();
         adapter = new FeedAdapter(model);
