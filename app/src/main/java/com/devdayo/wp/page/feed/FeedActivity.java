@@ -37,6 +37,7 @@ public class FeedActivity extends AppCompatActivity
         if(null != actionBar)
         {
             actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setIcon(R.mipmap.ic_launcher);
         }
 
         model = new FeedModel();
