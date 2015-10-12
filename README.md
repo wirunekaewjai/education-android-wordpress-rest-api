@@ -1,4 +1,4 @@
-# android-wordpress-rest-api
+# android-wordpress-jetpack-json-api
 Integrate your wordpress.com website into Android app
 
 ## Update @ 2015.07.10 - 9.00 AM
